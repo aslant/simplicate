@@ -17,8 +17,6 @@ curl -H 'Content-Type: application/json' -X POST http://127.0.0.1:5984/_replicat
 
 Supports filters, query-params, doc_ids, continuous replication.
 
-Gets a lot of personal use => stable.
-
 ## Install
 
 With [npm](//npmjs.org):
@@ -30,7 +28,7 @@ npm install -g simplicate
 or manually:
 
 ```sh
-git clone https://github.com/mammal/simplicate.git
+git clone https://github.com/aslant/simplicate.git
 cd simplicate
 ln -s `pwd`/simplicate.sh /usr/local/bin/simplicate
 ```
