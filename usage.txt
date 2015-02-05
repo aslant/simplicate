@@ -1,0 +1,38 @@
+  
+  USAGE
+  
+    simplicate -s <src> | -t <tar> [-d <doc_ids> | -f <filter> [-q <query_params>]] [-c] [-v] [<couch_server>]
+  
+  
+  OPTIONS
+  
+    <couch_server>
+      The CouchDB Server to which the /_replicate request is posted.
+      Defaults to http://127.0.0.1:5984
+    
+    -s <src>
+    -t <tar>
+      One or both of source and target must be supplied.
+      Where only one is specified, it should be the full URL to the database.
+      In this case it is inferred that the other database - on <couch_server> - will have the same name.
+    
+    -d <doc_ids>
+      Replicate only documents with supplied ids.
+      e.g. -d '[ "id1", "id2" ]'
+    
+    -f <filter>
+      Apply a filter function from a design document when replicating.
+      e.g. -f a_design_doc/some_filter_fn
+    
+    -q <query_params>
+      Query parameters can be supplied to the filter function.
+      e.g. -f a_design_doc/some_filter_fn -q '{ "aKey": "aVal" }'
+    
+    -c
+      Continuous replication
+    
+    -v
+      Run `curl` with verbose flag
+  
+  
+  N.B. create_target is always set to true.

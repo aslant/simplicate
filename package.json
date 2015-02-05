@@ -1,0 +1,32 @@
+{
+  "name": "simplicate",
+  "version": "1.0.0",
+  "description": "Minimal syntax for triggering CouchDB replication from the command line. Also useful for generating curl commands.",
+  "author": "Nick Cartwright <nick@mammal.io>",
+  "preferGlobal": true,
+  "bin": {
+    "simplicate": "./simplicate.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aslant/simplicate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aslant/simplicate/issues"
+  },
+  "homepage": "https://github.com/aslant/simplicate",
+  "keywords": [
+    "CouchDB",
+    "couch",
+    "replication",
+    "_replicate",
+    "continuous",
+    "filter",
+    "query-params",
+    "doc_ids",
+    "CLI",
+    "curl",
+    "Mammal"
+  ],
+  "license": "MIT"
+}
