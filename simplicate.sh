@@ -47,9 +47,13 @@ fi
 
 if [ -z "$src" ] && [ -z "$tar" ] || [ -z "$url" ]; then
   OPTIND=1; # cleanup
-  printf "$(cat $(dirname $(readlink $0))/usage.txt)";
-  echo;
-  exit 1;
+  usage_txt_path=$(dirname $(readlink $0))/usage.txt;
+  if [[ $usage_txt_path =~ ^[^/] ]]; then
+    # relative path
+    usage_txt_path=$(dirname $0)/$usage_txt_path;
+  fi
+
+  printf "$(cat $usage_txt_path)";
 fi
 
 if [ -z "$tar" ]; then
