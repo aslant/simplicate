@@ -54,6 +54,8 @@ if [ -z "$src" ] && [ -z "$tar" ] || [ -z "$url" ]; then
   fi
 
   printf "$(cat $usage_txt_path)";
+  echo;
+  exit 1;
 fi
 
 if [ -z "$tar" ]; then
