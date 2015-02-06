@@ -77,7 +77,7 @@ if [ -n "$filter" ]; then
 fi
 
 if [ -n "$query_params" ]; then
-  body="${body},\"query_params\":\"${query_params}\"";
+  body="${body},\"query_params\":${query_params}";
 fi
 
 if [ "$continuous" -eq 1 ]; then
