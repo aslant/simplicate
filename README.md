@@ -1,6 +1,9 @@
 # simplicate
 
-Minimal syntax for triggering CouchDB replication from the command line.
+CouchDB replication CLI. No boilerplate. Type less & see more!
+
+As well as triggering replication from the command line, also useful for generating
+curl commands that you can share with others.
 
 At its simplest:
 
