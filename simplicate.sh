@@ -56,11 +56,11 @@ fi
 if [ -z "$src" ] && [ -z "$tar" ] || [ -z "$url" ]; then
   OPTIND=1; # cleanup
 
-  symlinktarget="$(readlink $0)";
-  cd "$(dirname $0)";
+  symlinktarget="$(readlink "$0")";
+  cd "$(dirname "$0")";
 
   if [ -n "$symlinktarget" ]; then
-    cd "$(dirname $symlinktarget)";
+    cd "$(dirname "$symlinktarget")";
   fi
 
   printf "$(cat "$(pwd)/usage.txt")";
@@ -69,11 +69,11 @@ if [ -z "$src" ] && [ -z "$tar" ] || [ -z "$url" ]; then
 fi
 
 if [ -z "$tar" ]; then
-  tar=`echo $src | perl -pe "s|.*?([^/]*)/?$|\1|"`;
+  tar=$(echo "$src" | perl -pe "s|.*?([^/]*)/?$|\1|");
 fi
 
 if [ -z "$src" ]; then
-  src=`echo $tar | perl -pe "s|.*?([^/]*)/?$|\1|"`;
+  src=$(echo "$tar" | perl -pe "s|.*?([^/]*)/?$|\1|");
 fi
 
 body="{\"create_target\":true",\"source\":\"${src}\",\"target\":\"${tar}\"
