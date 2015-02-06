@@ -9,9 +9,15 @@ while getopts ":s:t:d:f:q:cont:v" o; do
   case "${o}" in
     s)
       src=${OPTARG};
+      if [[ $src =~ ^:[0-9]+/ ]]; then
+        src=http://127.0.0.1$src
+      fi
       ;;
     t)
       tar=${OPTARG};
+      if [[ $tar =~ ^:[0-9]+/ ]]; then
+        tar=http://127.0.0.1$tar
+      fi
       ;;
     d)
       doc_ids=${OPTARG};
@@ -43,6 +49,8 @@ fi
 
 if [ -z "$url" ]; then
   url="http://127.0.0.1:5984";
+elif [[ $url =~ ^:[0-9]+ ]]; then
+  url=http://127.0.0.1$url
 fi
 
 if [ -z "$src" ] && [ -z "$tar" ] || [ -z "$url" ]; then
