@@ -83,6 +83,6 @@ N.B. create_target is always set to true.
 
 ## Abbreviated URLs
 
-If a port is supplied but the protocol and hostname are both omitted, then the protocol and port are inferred as `http://127.0.0.1`.
+If a port is supplied but the protocol and hostname are both omitted, then the protocol and hostname are inferred as `http://127.0.0.1`.
 
 For example `:9999/foo_db` is mapped to `http://127.0.0.1:9999/foo_db`, `:8888` is mapped to `http://127.0.0.1:8888`.
