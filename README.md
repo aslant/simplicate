@@ -12,8 +12,8 @@ simplicate -s http://couch.mammal.io:5984/foo_db
 maps to the following curl command which is displayed for your confirmation.
 
 ```
-curl -H 'Content-Type: application/json' -X POST http://127.0.0.1:5984/_replicate -d \
-  '{"source":"http://couch.mammal.io:5984/foo_db","target":"foo_db","create_target":true}'
+curl -H 'Content-Type: application/json' -X POST http://127.0.0.1:5984/_replicate \
+  -d '{"source":"http://couch.mammal.io:5984/foo_db","target":"foo_db","create_target":true}'
 ```
 
 Supports filters, query-params, doc_ids, continuous replication.
@@ -52,8 +52,8 @@ OPTIONS
 -t <tar>
   One or both of source and target must be supplied.
   Where only one is specified, it should be the full URL to the database.
-  In this case it is inferred that the other database - on <couch_server> - will have
-  the same name.
+  In this case it is inferred that the other database - on <couch_server> - 
+  will have the same name.
 
 -d <doc_ids>
   Replicate only documents with supplied ids.
