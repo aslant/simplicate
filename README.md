@@ -30,8 +30,7 @@ or manually:
 
 ```sh
 git clone https://github.com/aslant/simplicate.git
-cd simplicate
-ln -s `pwd`/simplicate.sh /usr/local/bin/simplicate
+ln -s `pwd`/simplicate/simplicate.sh /usr/local/bin/simplicate
 ```
 
 It's a bash script. Depends on curl.
