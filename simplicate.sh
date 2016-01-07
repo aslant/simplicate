@@ -10,17 +10,11 @@ do
   case "${o}" in
     s)
       src=${OPTARG}
-      if [[ $src =~ ^:[0-9]+/ ]]
-      then
-        src=http://127.0.0.1$src
-      fi
+      [[ $src =~ ^:[0-9]+/ ]] && src=http://127.0.0.1$src
       ;;
     t)
       tar=${OPTARG}
-      if [[ $tar =~ ^:[0-9]+/ ]]
-      then
-        tar=http://127.0.0.1$tar
-      fi
+      [[ $tar =~ ^:[0-9]+/ ]] && tar=http://127.0.0.1$tar
       ;;
     d)
       doc_ids=${OPTARG}
@@ -64,53 +58,28 @@ then
   OPTIND=1; # cleanup
 
   symlinktarget="$(readlink "$0")"
-  cd "$(dirname "$0")"
 
-  if [ -n "$symlinktarget" ]
-  then
-    cd "$(dirname "$symlinktarget")"
-  fi
+  cd "$(dirname "$0")"
+  [ -n "$symlinktarget" ] && cd "$(dirname "$symlinktarget")"
 
   cat usage.txt >&2
   exit 1
 fi
 
-if [ -z "$tar" ]
-then
-  tar=$(echo "$src" | perl -pe "s|.*?([^/]*)/?$|\1|")
-fi
-
-if [ -z "$src" ]
-then
-  src=$(echo "$tar" | perl -pe "s|.*?([^/]*)/?$|\1|")
-fi
+[ -z "$tar" ] && tar=$(echo "$src" | perl -pe "s|.*?([^/]*)/?$|\1|")
+[ -z "$src" ] && src=$(echo "$tar" | perl -pe "s|.*?([^/]*)/?$|\1|")
 
 body="{\"create_target\":true",\"source\":\"${src}\",\"target\":\"${tar}\"
-
-if [ -n "$doc_ids" ]
-then
-  body="${body},\"doc_ids\":${doc_ids}"
-fi
-
-if [ -n "$filter" ]
-then
-  body="${body},\"filter\":\"${filter}\""
-fi
-
-if [ -n "$query_params" ]
-then
-  body="${body},\"query_params\":${query_params}"
-fi
-
-if [ "$continuous" -eq 1 ]
-then
-  body="${body},\"continuous\":true"
-fi
-
+[ -n "$doc_ids" ]       && body="${body},\"doc_ids\":${doc_ids}"
+[ -n "$filter" ]        && body="${body},\"filter\":\"${filter}\""
+[ -n "$query_params" ]  && body="${body},\"query_params\":${query_params}"
+[ "$continuous" -eq 1 ] && body="${body},\"continuous\":true"
 body="${body}}"
 
-cmd="curl" && [ $verbose -eq 1 ] && cmd="curl -v"
+cmd="curl"
+[ $verbose -eq 1 ] && cmd="curl -v"
 cmd="${cmd} -H 'Content-Type: application/json' -X POST ${url}/_replicate -d '${body}'"
+
 echo
 echo "  $cmd"
 echo
