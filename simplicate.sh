@@ -80,9 +80,7 @@ cmd="curl"
 [ $verbose -eq 1 ] && cmd="curl -v"
 cmd="$cmd -H 'Content-Type: application/json' -X POST $url/_replicate -d '$body'"
 
-echo
-echo "  $cmd"
-echo
+echo -e "\n  $cmd\n"
 
 read -r -p "execute command? [y/N]" response
 if [[ $response =~ ^[yY]$ ]]
