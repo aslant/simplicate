@@ -1,9 +1,9 @@
 #!/bin/bash
 
 OPTIND=1
-continuous=0
-verbose=0
-bad_opt=0
+continuous=
+verbose=
+bad_opt=
 
 while getopts ":s:t:d:f:q:cont:v" o
 do
@@ -38,7 +38,7 @@ do
   esac
 done
 
-if [ $bad_opt -eq 0 ]
+if [ -z "$bad_opt" ]
 then
   shift $((OPTIND-1))
   url=$1
@@ -73,11 +73,11 @@ body="{\"create_target\":true",\"source\":\"$src\",\"target\":\"$tar\"
 [ -n "$doc_ids" ]       && body="$body,\"doc_ids\":$doc_ids"
 [ -n "$filter" ]        && body="$body,\"filter\":\"$filter\""
 [ -n "$query_params" ]  && body="$body,\"query_params\":$query_params"
-[ "$continuous" -eq 1 ] && body="$body,\"continuous\":true"
+[ -n "$continuous" ]      && body="$body,\"continuous\":true"
 body="$body}"
 
-cmd="curl"
-[ $verbose -eq 1 ] && cmd="curl -v"
+[ -z "$verbose" ] && cmd="curl"
+[ -n "$verbose" ] && cmd="curl -v"
 cmd="$cmd -H 'Content-Type: application/json' -X POST $url/_replicate -d '$body'"
 
 echo -e "\n  $cmd\n" >&2
