@@ -63,8 +63,7 @@ if [ -z "$src" ] && [ -z "$tar" ] || [ -z "$url" ]; then
     cd "$(dirname "$symlinktarget")";
   fi
 
-  printf "$(cat "$(pwd)/usage.txt")";
-  echo;
+  cat usage.txt >&2
   exit 1;
 fi
 
