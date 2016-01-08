@@ -3,9 +3,10 @@
 OPTIND=1
 continuous=
 verbose=
+yes=
 bad_opt=
 
-while getopts ":s:t:d:f:q:cont:v" o
+while getopts ":s:t:d:f:q:cvy" o
 do
   case "$o" in
     s)
@@ -30,6 +31,9 @@ do
       ;;
     v)
       verbose=1
+      ;;
+    y)
+      yes=1
       ;;
     *)
       bad_opt=1
@@ -82,10 +86,13 @@ cmd="$cmd -H 'Content-Type: application/json' -X POST $url/_replicate -d '$body'
 
 echo -e "\n  $cmd\n" >&2
 
-read -r -p "execute command? [y/N]" response
-if [[ $response =~ ^[yY]$ ]]
+if [ -z "$yes" ]
 then
-  echo `eval $cmd`
-else
-  exit 1
+  read -r -p "execute command? [y/N]" response
+  if [[ ! "$response" =~ ^[yY]$ ]]
+  then
+    exit 1
+  fi
 fi
+
+echo $(eval "$cmd")

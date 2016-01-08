@@ -38,7 +38,7 @@ It's a bash script. Depends on curl.
 ## Usage
 
 ```bash
-simplicate -s <src> | -t <tar>  [-d <doc_ids>] [-f <filter> [-q <query_params>]] [-c] [-v] [<couch_server>]
+simplicate -s <src> | -t <tar>  [-d <doc_ids>] [-f <filter> [-q <query_params>]] [-c] [-v] [-y] [<couch_server>]
 ```
 
 ```
@@ -72,6 +72,9 @@ OPTIONS
 
 -v
   Run `curl` with verbose flag
+
+-y
+  Assume yes - curl command executed without confirmation.
 
 ---
 

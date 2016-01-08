@@ -1,7 +1,7 @@
   
   USAGE
   
-    simplicate -s <src> | -t <tar>  [-d <doc_ids>] [-f <filter> [-q <query_params>]] [-c] [-v] [<couch_server>]
+    simplicate -s <src> | -t <tar>  [-d <doc_ids>] [-f <filter> [-q <query_params>]] [-c] [-v] [-y] [<couch_server>]
   
   
   OPTIONS
@@ -33,6 +33,9 @@
     
     -v
       Run `curl` with verbose flag
+
+    -y
+      Assume yes - curl command executed without confirmation.
   
   
   N.B. create_target is always set to true.
