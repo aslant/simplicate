@@ -66,14 +66,14 @@ then
   exit 1
 fi
 
-[ -z "$tar" ] && tar=$(echo "$src" | perl -pe "s|.*?([^/]*)/?$|\1|")
-[ -z "$src" ] && src=$(echo "$tar" | perl -pe "s|.*?([^/]*)/?$|\1|")
+[ -z "$tar" ] && tar=$(echo "$src" | perl -pe 's|.*?([^/]*)/?$|\1|')
+[ -z "$src" ] && src=$(echo "$tar" | perl -pe 's|.*?([^/]*)/?$|\1|')
 
-body="{\"create_target\":true",\"source\":\"$src\",\"target\":\"$tar\"
-[ -n "$doc_ids" ]       && body="$body,\"doc_ids\":$doc_ids"
-[ -n "$filter" ]        && body="$body,\"filter\":\"$filter\""
-[ -n "$query_params" ]  && body="$body,\"query_params\":$query_params"
-[ -n "$continuous" ]      && body="$body,\"continuous\":true"
+body='{"create_target":true","source":"'"$src"'","target":"'"$tar"'"'
+[ -n "$doc_ids" ]       && body="$body"',"doc_ids":'"$doc_ids"
+[ -n "$filter" ]        && body="$body"',"filter":"'"$filter"'"'
+[ -n "$query_params" ]  && body="$body"',"query_params":'"$query_params"
+[ -n "$continuous" ]    && body="$body"',"continuous":true'
 body="$body}"
 
 [ -z "$verbose" ] && cmd="curl"
