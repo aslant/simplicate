@@ -82,7 +82,7 @@ body="$body}"
 
 [ -z "$verbose" ] && cmd="curl"
 [ -n "$verbose" ] && cmd="curl -v"
-cmd="$cmd -H 'Content-Type: application/json' -X POST $url/_replicate -d '$body'"
+cmd="$cmd -v -s -f --output /dev/null --write-out %{http_code} -H 'Content-Type: application/json' -X POST $url/_replicate -d '$body'"
 
 echo -e "\n  $cmd\n" >&2
 
@@ -95,4 +95,5 @@ then
   fi
 fi
 
-echo $(eval "$cmd")
+response_code=$(eval "$cmd")
+test $response_code -ne 200 && exit 1
