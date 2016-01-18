@@ -12,7 +12,7 @@ simplicate -s http://couch.mammal.io:5984/foo_db
 maps to the following curl command which is displayed for your confirmation.
 
 ```
-curl -v -s -f --output /dev/null --write-out %{http_code} \
+curl -s -f --output /dev/null --write-out %{http_code} \
   -H 'Content-Type: application/json' \
   -X POST http://127.0.0.1:5984/_replicate \
   -d '{"source":"http://couch.mammal.io:5984/foo_db","target":"foo_db","create_target":true}'
