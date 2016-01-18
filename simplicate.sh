@@ -96,4 +96,7 @@ then
 fi
 
 response_code=$(eval "$cmd")
-test $response_code -ne 200 && exit 1
+if [ $response_code -ne 200 ]
+then
+  exit 1
+fi
