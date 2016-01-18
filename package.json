@@ -1,6 +1,6 @@
 {
   "name": "simplicate",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "CouchDB replication CLI. No boilerplate. Type less & see more!",
   "author": "Nick Cartwright <nick@mammal.io>",
   "preferGlobal": true,
