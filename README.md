@@ -12,11 +12,15 @@ simplicate -s http://couch.mammal.io:5984/foo_db
 maps to the following curl command which is displayed for your confirmation.
 
 ```
-curl -H 'Content-Type: application/json' -X POST http://127.0.0.1:5984/_replicate \
+curl -v -s -f --output /dev/null --write-out %{http_code} \
+  -H 'Content-Type: application/json' \
+  -X POST http://127.0.0.1:5984/_replicate \
   -d '{"source":"http://couch.mammal.io:5984/foo_db","target":"foo_db","create_target":true}'
 ```
 
 Supports filters, query-params, doc_ids, continuous replication.
+
+Exits with error code 1 when replication fails.
 
 ## Install
 
